@@ -336,6 +336,6 @@ ggsave(filename=paste0("C:/R/",sampName,"/lorenzCurve.png"),plot=p,width=15,heig
 ```
 ![Lorenz Curve](https://github.com/petclippy/medalla/blob/main/lorenzCurve.png?raw=true) 
 
-This plot is called a Lorenz curve and is a common way to illustrate inequality of distribution or wealth within a system. A straight line from bottom left to top right would be fully equal. The general conclusion from this analysis is that the network is very unequally distributed, as is expected for this network.
+This plot is called a Lorenz curve and is a common way to illustrate inequality of distribution or wealth within a system. A straight line from bottom left to top right would be fully equal with all participants controlling an equal amount. The general conclusion from this analysis is that the network is very unequally distributed, as would be expected for this testnet network.
 
-Note that this inequality analysis is preliminary. This framework will never be able to correctly attribute all clusters of validators correctly to individual holders of the crypto. However, because of the general difficulty of getting this type of information, I hope it may still be interesting and if nothing else spark discussion on how to improve it or other ideas on how to do this type of analysis.
+Note that this inequality analysis is preliminary. This framework will never be able to correctly attribute all clusters of validators correctly to individual holders of the crypto. However, because of the general difficulty of getting this type of information, I hope it may still be interesting and spark discussion on how to improve it or other ideas on how to extend this analysis.
