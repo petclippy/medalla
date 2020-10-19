@@ -38,7 +38,7 @@ datIn = rbindlist(datIn,fill=T,idcol="epoch")
 save(datIn,file="C:/R/epochDat") # Location epochDat
 ```
 
-The epochs were then processed in batches of 1000 epochs each, with an increment of 20 epochs per run. Principle components were calculated. The sign of each principle components when it is calculated has a random component so I made a script to harmonize the sign of the PC1 and PC and thereby allow animation.
+The epochs were then processed in batches of 500, 1000 or 1500 epochs each, with an increment of 20 epochs per run. Principle components were calculated for the successful or not successful attestation for each validator in the range of epochs. The sign of each principle components when it is calculated has some randomness so I made a script to harmonize the sign of the PC1 and PC and thereby allow animation.
 
 ```R
 library(data.table)
@@ -111,7 +111,7 @@ Animation of the produced .png was done by the windows command line tool [gifski
 :-------------------------:|:-------------------------:|:-------------------------:
 ![500](https://github.com/petclippy/medalla/blob/main/500_90_400.gif?raw=true)  |  ![1000](https://github.com/petclippy/medalla/blob/main/1000scr_90_400.gif?raw=true) | ![1500](https://github.com/petclippy/medalla/blob/main/1500_90_400.gif?raw=true) 
 
-The longer the range of epochs used, the less responsive the analysis will be to current events if that is the goal of this visualization. However, it is also clear that shorter epoch ranges makes the visualization less stable and more difficult to visually get information from. For further analysis I landed on using 1000 epoch ranges as it seems to give a good compromise of relative stability while it should also be possible to get a visualization of the current state of the network after some hours. However, if this analysis becomes useful to visualize the current and recent state of the network, shorter epoch ranges should be explored more.
+The longer the range of epochs used, the less responsive the analysis will be to current events if that is the goal of this visualization. However, it is also clear that shorter epoch ranges makes the visualization less stable and possibly more difficult to follow and visually get information from. For the further analysis I landed on using 1000 epoch ranges as it seems to give a good compromise of relative stability while it should also be possible to get a visualization of the current state of the network after some hours. However, if this analysis becomes useful to visualize the current and recent state of the network, shorter epoch ranges should be explored more.
 
 To identify clusters of validators, hierarchical clustering of the principal components was used, cut a different heights to explore clusters at several levels of organization.
 
