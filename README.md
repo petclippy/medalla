@@ -255,9 +255,9 @@ Cluster 46 from epoch set 200 | Cluster 49 from epoch set 30 | Cluster 59 from e
 ![cl2_200_clust46_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust46_75_300.gif?raw=true)  |  ![cl2_30_clust49_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust49_75_300.gif?raw=true) | ![cl2_200_clust59_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust59_75_300.gif?raw=true) 
 
 
-Cluster 65 from epoch set 200 | Cluster 65 from epoch set 30 | Cluster 70 from epoch set 30
+Cluster 65 from epoch set 200 | Cluster 70 from epoch set 30
 :-------------------------:|:-------------------------:|:-------------------------:
-![cl2_200_clust65_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust65_75_300.gif?raw=true)  |  ![cl2_30_clust65_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust65_75_300.gif?raw=true) | ![cl2_30_clust70_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust70_75_300.gif?raw=true) 
+![cl2_200_clust65_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust65_75_300.gif?raw=true)  |  ![cl2_30_clust70_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust70_75_300.gif?raw=true) 
 
 
 Cluster 93 from epoch set 200 | Cluster 151 from eopch set 200 | Cluster 4 from epoch set 200
