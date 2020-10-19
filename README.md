@@ -111,9 +111,9 @@ Animation of the produced .png was done by the windows command line tool [gifski
 :-------------------------:|:-------------------------:|:-------------------------:
 ![500](https://github.com/petclippy/medalla/blob/main/500_90_400.gif?raw=true)  |  ![1000](https://github.com/petclippy/medalla/blob/main/1000scr_90_400.gif?raw=true) | ![1500](https://github.com/petclippy/medalla/blob/main/1500_90_400.gif?raw=true) 
 
+The longer the range of epochs used, the less responsive the analysis will be to current events if that is the goal of this visualization. However, it is also clear that shorter epoch ranges makes the visualization less stable and more difficult to visually get information from. For further analysis I landed on using 1000 epoch ranges as it seems to give a good compromise of relative stability while it should also be possible to get a visualization of the current state of the network after some hours.
 
-
-To identify validators in clusters, hierarchical clustering of the principal components was used, cut a different heights to explore clusters at several levels of organization.
+To identify clusters of validators, hierarchical clustering of the principal components was used, cut a different heights to explore clusters at several levels of organization.
 
 ```R
 library(Rclusterpp)
@@ -241,28 +241,28 @@ for (run in 1:length(runList)) {
 }
 ```
 
-Cluster 18 from epoch set 111 | Cluster 4 from epoch set 200 | Cluster 6 from epoch set 30
+Cluster 18 from epoch set 111. A cluster that stayed online during "roughtime"  | Cluster 4 from epoch set 200 | Cluster 6 from epoch set 30
 :-------------------------:|:-------------------------:|:-------------------------:
-![cl4_111_clust18_75_300](https://github.com/petclippy/medalla/blob/main/cl4_111_clust18_75_300.gif?raw=true)  |  ![cl2_200_clust4_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust4_75_300.gif?raw=true) | ![cl2_30_clust6_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust6_75_300.gif?raw=true) 
+![cl4_111_clust18_75_300](https://github.com/petclippy/medalla/blob/main/cl4_111_clust18_75_300_rep.gif?raw=true)  |  ![cl2_200_clust4_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust4_75_300.gif?raw=true) | ![cl2_30_clust6_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust6_75_300.gif?raw=true) 
 
 Cluster 8 from epoch set 30 | Cluster 29 from epoch set 30 | Cluster 32 from epoch set 200
 :-------------------------:|:-------------------------:|:-------------------------:
 ![cl2_30_clust8_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust8_75_300.gif?raw=true)  |  ![cl2_30_clust29_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust29_75_300.gif?raw=true) | ![cl2_200_clust32_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust32_75_300.gif?raw=true) 
 
 
-Cluster 46 from epoch set 200 | Cluster 49 from epoch set 30 | Cluster 59 from epoch set 200
+Cluster 46 from epoch set 200 | Cluster 49 from epoch set 30. Validators coming online | Cluster 59 from epoch set 200
 :-------------------------:|:-------------------------:|:-------------------------:
 ![cl2_200_clust46_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust46_75_300.gif?raw=true)  |  ![cl2_30_clust49_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust49_75_300.gif?raw=true) | ![cl2_200_clust59_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust59_75_300.gif?raw=true) 
 
 
-Cluster 65 from epoch set 200 | Cluster 65 from epoch set 30 | Cluster 70 from epoch set 30
+Cluster 65 from epoch set 200. Validators going offline | Cluster 65 from epoch set 30 | Cluster 70 from epoch set 30
 :-------------------------:|:-------------------------:|:-------------------------:
 ![cl2_200_clust65_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust65_75_300.gif?raw=true)  |  ![cl2_30_clust65_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust65_75_300.gif?raw=true) | ![cl2_30_clust70_75_300](https://github.com/petclippy/medalla/blob/main/cl2_30_clust70_75_300.gif?raw=true) 
 
 
-Cluster 93 from epoch set 200 | Cluster 151 from eopch set 200
+Cluster 93 from epoch set 200 | Cluster 151 from eopch set 200 | Cluster 4 from epoch set 200
 :-------------------------:|:-------------------------:|:-------------------------:
-![cl2_200_clust93_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust93_75_300.gif?raw=true)  |  ![cl2_200_clust151_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust151_75_300.gif?raw=true)
+![cl2_200_clust93_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust93_75_300.gif?raw=true)  |  ![cl2_200_clust151_75_300](https://github.com/petclippy/medalla/blob/main/cl2_200_clust151_75_300.gif?raw=true) | ![cl2_200_clust4_90_400_rep](https://github.com/petclippy/medalla/blob/main/cl2_200_clust4_90_400_rep.gif?raw=true)
 
 
 If all validators that are linked together by being controlled by the same user could be correctly defined, the clusters could be used to derive economic analysis of the network like calculating the concentration of wealth and power in the network. The princple component cluster attribution (shown above) will not be able to correctly identify all clusters and there are confounding factors that may lead to misattribution of validators in clusters. However, there is also no other established way to gather this type of economic network information so it is interesting to explore using this type of analysis. 
