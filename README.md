@@ -287,7 +287,7 @@ for (run in 1:651) {
 }
 clustDf = rbindlist(clustList,fill=T)
 
-# Create clustOut list that contains links between validators that are always attributed to the same clusters over all non-NA epochs
+# Create clustOut list that contains links between validators that are always attributed to the same clusters over all non-NA epochs. Set minimum 3 common non-NA epochs to determine if validators cluster together
 clustOut = list()
 for (val in colnames(clustDf)) {
 	searStart = clustDf[[val]]
@@ -297,7 +297,7 @@ for (val in colnames(clustDf)) {
 		if (val==valLook) next
 		lookStart = clustDf[[valLook]]
 		lookNAs = is.na(lookStart)
-		if (length(searStart[searNAs+lookNAs==0])<2) next
+		if (length(searStart[searNAs+lookNAs==0])<4) next
 		sear = searStart[searNAs+lookNAs==0]
 		look = lookStart[searNAs+lookNAs==0]
 		if (paste(sear,collapse=",")==paste(look,collapse=",")) out = c(out,as.character(valLook))
@@ -318,24 +318,31 @@ for (clust in 1:length(clustOrder)) {
 	clustSelected[names(notPrevClust)] = 1
 	clustCounter = clustCounter+1
 }
-
+clustNotSelected = names(clustSelected[clustSelected==0])
+for (notClust in clustNotSelected) {
+	clusters[[clustCounter]] = notClust
+	clustCounter = clustCounter+1
+}
 
 clustSize = sapply(clusters,length)
 clustOrder = order(clustSize)
 
-plotDf = data.frame(size=(1:length(clustSize))/length(clustSize),sums=cumsum(clustSize[clustOrder])/sum(clustSize[clustOrder]),lab=clustSize[clustOrder])
-p = ggplot(plotDf,aes(x=size,y=sums)) +
+plotDf = data.frame(participants=(1:length(clustSize))/length(clustSize),ownership=cumsum(clustSize[clustOrder])/sum(clustSize[clustOrder]),lab=clustSize[clustOrder])
+p = ggplot(plotDf,aes(x=participants,y=ownership)) +
 	geom_point() +
-	geom_text_repel(data=plotDf[plotDf[,"lab"]>1000,],aes(label=lab)) +
+	geom_text_repel(data=plotDf[plotDf[,"lab"]>500,],aes(label=lab),nudge_x=-0.05,size=3) +
 	theme_minimal() +
 	xlab("Cumulative participants") +
 	ylab("Cumulative validator control (wealth)") +
-	labs(title="Lorenz curve showing distribution of validators in clusters",subtitle="Cluster sizes with >1000 validators indicated")
+	labs(title="Lorenz curve showing distribution of validators per cluster",subtitle="Clusters with >500 validators indicated")
 	
-ggsave(filename=paste0("C:/R/",sampName,"/lorenzCurve.png"),plot=p,width=15,height=15,units="cm",dpi=200)
+ggsave(filename=paste0("/home/pettholl/R/lorenzCurve_4.png"),plot=p,width=15,height=15,units="cm",dpi=200)
+
 ```
 ![Lorenz Curve](https://github.com/petclippy/medalla/blob/main/lorenzCurve.png?raw=true) 
 
-This plot is called a Lorenz curve and is a common way to illustrate inequality of distribution or wealth within a system. A straight line from bottom left to top right would be fully equal with all participants controlling an equal amount. The general conclusion from this analysis is that the network is very unequally distributed, as would be expected for this testnet network.
+This plot is called a Lorenz curve and is a common way to illustrate inequality of distribution or wealth within a system. A straight line from bottom left to top right would be fully equal with all participants controlling an equal amount of validators and thus being equal network participants. The general conclusion from this analysis is that the network is very unequally distributed, as would be expected for this testnet network.
 
-Note that this inequality analysis is preliminary. This framework will never be able to correctly attribute all clusters of validators correctly to individual holders of the crypto. However, because of the general difficulty of getting this type of information, I hope it may still be interesting and spark discussion on how to improve it or other ideas on how to extend this analysis.
+Note that this inequality analysis is preliminary. Using the above scripts to group validators together ends up with 28716 validators defined as not being in any cluster. From my experience in the community, most testnet participants run multiple validators and it sounds unlikey that there are so many (28716 / 75208 * 100 = 38%) lone validators in the testnet. The above analysis will only be able to identify clusters of validators that stop attesting together over a period of time and the most likely explanation for this is that many of the unclustered validators did not have long enough correlated downtime for them to be identified as clustered. 
+
+This framework will never be able to correctly attribute all clusters of validators correctly to individual holders of the crypto. However, because of the general difficulty of getting this type of information from the network, I hope it may still be interesting and spark discussion on how this analysis may be improved or other ways of using this analysis framework for economic network analysis.
