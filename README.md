@@ -113,10 +113,7 @@ Animation of the produced .png was done by the windows command line tool [gifski
 
 The longer the range of epochs used, the less responsive the analysis will be to current events if that is the goal of this visualization. However, it is also clear that shorter epoch ranges makes the visualization less stable and possibly more difficult to follow and visually get information from. For the further analysis I landed on using 1000 epoch ranges as it seems to give a good compromise of relative stability while it should also be possible to get a visualization of the current state of the network after some hours. However, if this analysis becomes useful to visualize the current and recent state of the network, shorter epoch ranges should be explored more.
 
-To identify clusters of validators, hierarchical clustering of the principal components was used, cut a different heights to explore clusters at several levels of organization. Hierarchical clustering was used because it can be used across the many epoch sets with a given "height" of cutting. A higher value of cut gives fewer clusters and lower value of cut gives more stringent grouping with more clusters. A major strength of using hierarchical clustering is that the number of clusters do not have to be decided - only a cut height has to be decided and then the number of clusters will depend on how many distinct clusters there are in the underlyding data.
-
-![hclust](https://github.com/petclippy/medalla/blob/main/hclust.png?raw=true)
-The above is an illustration of the hierarchical clustering of validators in epoch set 200 (epochs 3981 to 4979). The blue line shows cut height 2 and the red line cut height 4.
+To identify clusters of validators, hierarchical clustering of the principal components was used, cut a different heights to explore clusters at several levels of organization. Hierarchical clustering was used because it can be used across the many epoch sets with a given "height" of cutting. A higher value of cut gives fewer clusters and lower value of cut gives more stringent grouping with more clusters. A major strength of using hierarchical clustering is that the number of clusters do not have to be decided - only a cut height has to be decided and then the number of clusters will depend on how many distinct clusters there are in the underlying data.
 
 ```R
 library(Rclusterpp)
@@ -158,8 +155,11 @@ for (set in setSel[1]:setSel[2]) {
 	save(pcaDf,file=paste0("C:/R/",sampName,"/",set))
 }
 ```
+![hclust](https://github.com/petclippy/medalla/blob/main/hclust.png?raw=true)
 
-The clusters were first explored and visualized on the plots to select the most interesting clusters. The ggscatter command in the code below produces the following visualization of clusters:
+The above is an illustration of the hierarchical clustering of validators in epoch set 200 (epochs 3981 to 4979). The blue line shows cut height 2 and the red line cut height 4.
+
+The clusters were explored and visualized on principle component plots to select the most interesting clusters. The ggscatter command in the code below produces the following visualization of clusters:
 epoch set 200 (epochs 3981 to 4979), cut height 2: | epoch set 200 (epochs 3981 to 4979), cut height 4:
 :-------------------------:|:-------------------------:
 ![500](https://github.com/petclippy/medalla/blob/main/ggscatter_cl2.png?raw=true)  |  ![1000](https://github.com/petclippy/medalla/blob/main/ggscatter_cl4.png?raw=true)
